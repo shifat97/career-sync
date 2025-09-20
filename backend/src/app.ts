@@ -3,8 +3,8 @@ import cors from 'cors';
 import pinoHttp from 'pino-http';
 
 import connectDB from '@/db';
-import { envConfig } from '@/config';
-import logger from '@/config/logger';
+import { envConfig } from '@/configs';
+import logger from '@/configs/logger';
 
 const app = express();
 app.use(pinoHttp({ logger }));
