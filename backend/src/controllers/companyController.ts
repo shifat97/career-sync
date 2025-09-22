@@ -12,3 +12,21 @@ export const getCompanies = async (req: Request, res: Response) => {
   const result = await companyServices.getCompanies({ page, limit });
   res.status(200).json(result);
 };
+
+export const updateCompanyByID = async (req: Request, res: Response) => {
+  try {
+    const { _id } = req.params;
+    const newData = req.body;
+
+    const updateCompany = await companyServices.updateCompanyByID(_id, newData);
+
+    if (!updateCompany) {
+      res.status(404).json({ message: 'No company found wit this id' });
+      return;
+    }
+
+    res.status(200).json({ message: 'Update successfully', newData: newData });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error', error: error });
+  }
+};
