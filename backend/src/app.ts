@@ -6,6 +6,7 @@ import connectDB from '@/db';
 import { envConfig } from '@/configs';
 import logger from '@/configs/logger';
 import configureRoutes from './routes';
+import { errorHandler } from '@/middlewares/index';
 
 const app = express();
 app.use(pinoHttp({ logger }));
@@ -24,6 +25,7 @@ app.get('/health', (_req, res) => {
 });
 
 configureRoutes(app);
+app.use(errorHandler);
 
 app.listen(envConfig.PORT, () => {
   logger.info(`Server is running on port ${envConfig.PORT}`);
