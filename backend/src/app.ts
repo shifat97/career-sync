@@ -6,7 +6,7 @@ import connectDB from '@/db';
 import { envConfig } from '@/configs';
 import logger from '@/configs/logger';
 import configureRoutes from './routes';
-import { errorHandler } from '@/middlewares/index';
+import { errorHandler } from '@/middlewares';
 
 const app = express();
 app.use(pinoHttp({ logger }));

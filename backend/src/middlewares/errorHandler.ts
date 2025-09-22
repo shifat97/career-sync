@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import z from 'zod';
 
 export const errorHandler = (
-  error: unknown,
+  error: Error,
   _req: Request,
   res: Response,
   _next: NextFunction,
