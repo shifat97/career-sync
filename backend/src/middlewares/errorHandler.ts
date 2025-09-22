@@ -4,9 +4,9 @@ import z from 'zod';
 
 export const errorHandler = (
   error: unknown,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction,
+  _next: NextFunction,
 ): void => {
   // Zod
   if (error instanceof z.ZodError) {
