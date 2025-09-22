@@ -11,5 +11,6 @@ router.post(
   companyController.createCompany,
 );
 router.get('/', companyController.getCompanies);
+router.put('/:_id', companyController.updateCompanyByID);
 
 export default router;
