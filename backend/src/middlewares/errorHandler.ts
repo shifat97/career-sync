@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import mongoose from 'mongoose';
+import mongoose, { mongo } from 'mongoose';
 import z from 'zod';
 
 export const errorHandler = (
@@ -26,7 +26,18 @@ export const errorHandler = (
     return;
   }
 
+  // Mongoose duplicate key error (E11000)
+  if (error instanceof mongo.MongoServerError && error.code === 11000) {
+    res.status(400).json({
+      status: 'error',
+      message: `Duplicate value for field(s): ${Object.keys(error.keyValue).join(', ')}`,
+      duplicateField: error.keyValue,
+    });
+    return;
+  }
+
   const err = error as { message?: string; status?: number };
+
   res.status(err.status || 500).json({
     status: 'error',
     message: err.message || 'Internal Server Error',
