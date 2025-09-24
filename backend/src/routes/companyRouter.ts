@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { companyController } from '@/controllers';
 import { validatePayload } from '@/middlewares/validatePayload';
-import { CreateCompanySchema } from '@/schemas';
+import { CreateCompanySchema, UpdateCompanySchema } from '@/schemas';
 
 const router = Router();
 
@@ -11,6 +11,10 @@ router.post(
   companyController.createCompany,
 );
 router.get('/', companyController.getCompanies);
-router.put('/:_id', companyController.updateCompanyByID);
+router.put(
+  '/:id',
+  validatePayload(UpdateCompanySchema),
+  companyController.updateCompanyByID,
+);
 
 export default router;

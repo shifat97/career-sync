@@ -31,16 +31,12 @@ export const getCompanies = async ({
   };
 };
 
-export const updateCompanyByID = async (
-  _id: string,
-  newData: CreateCompany,
-) => {
-  const createUpdatedCompany = await CompanyModel.findOneAndReplace(
-    { _id: _id },
+export const updateCompanyByID = async (id: string, newData: CreateCompany) => {
+  const createUpdatedCompany = await CompanyModel.findByIdAndUpdate(
+    id,
     newData,
     {
       new: true,
-      upsert: true,
     },
   );
 
