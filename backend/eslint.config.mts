@@ -5,11 +5,6 @@ import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
   {
-    ignores: [
-      'components/ui/**', // ✅ Ignore all shadcn/ui files
-    ],
-  },
-  {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
     plugins: { js },
     extends: ['js/recommended'],
