@@ -1,6 +1,7 @@
 import { z } from 'zod';
+import mongoose from 'mongoose';
 import { DateMixinSchema, IdMixinSchema } from '@/schemas/mixin';
-import { EmploymentType, WorkPlaceType, JobStatus } from '@/types/index';
+import { EmploymentType, WorkPlaceType, JobStatus } from '@/types';
 
 export const JobSchema = z.object({
   ...IdMixinSchema,
@@ -11,7 +12,9 @@ export const JobSchema = z.object({
   applicationDeadline: z.date(),
   department: z.string(),
   location: z.string(),
-  company: z.string(),
+  company: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val), {
+    message: 'Invalid ObjectId',
+  }),
   employmentType: z.enum(EmploymentType),
   workPlaceType: z.enum(WorkPlaceType),
   compensation: z.string(),
