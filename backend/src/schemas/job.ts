@@ -1,0 +1,25 @@
+import { z } from 'zod';
+import { DateMixinSchema, IdMixinSchema } from '@/schemas/mixin';
+import { EmploymentType, WorkPlaceType, JobStatus } from '@/types/index';
+
+export const JobSchema = z.object({
+  ...IdMixinSchema,
+  ...DateMixinSchema,
+  title: z.string(),
+  jobDescription: z.string(),
+  openingDate: z.date(),
+  applicationDeadline: z.date(),
+  department: z.string(),
+  location: z.string(),
+  company: z.string(),
+  employmentType: z.enum(EmploymentType),
+  workPlaceType: z.enum(WorkPlaceType),
+  compensation: z.string(),
+  skills: z.array(z.string()).min(1, 'At least one skill is required'),
+  vacancy: z.number().int().positive(),
+  tags: z.array(z.string()).min(1, 'At least one tag is required'),
+  status: z.enum(JobStatus),
+  deletedAt: z.date().nullable().default(null),
+});
+
+export type Job = z.infer<typeof JobSchema>;
