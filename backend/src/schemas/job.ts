@@ -25,4 +25,22 @@ export const JobSchema = z.object({
   deletedAt: z.date().nullable().default(null),
 });
 
+export const CreateJobSchema = JobSchema.pick({
+  title: true,
+  jobDescription: true,
+  openingDate: true,
+  applicationDeadline: true,
+  department: true,
+  location: true,
+  company: true,
+  employmentType: true,
+  workPlaceType: true,
+  compensation: true,
+  skills: true,
+  vacancy: true,
+  tags: true,
+  status: true,
+});
+
 export type Job = z.infer<typeof JobSchema>;
+export type CreateJob = z.infer<typeof CreateJobSchema>;
