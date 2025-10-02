@@ -40,6 +40,9 @@ export const CreateJobSchema = JobSchema.pick({
   vacancy: true,
   tags: true,
   status: true,
+}).extend({
+  openingDate: z.coerce.date(),
+  applicationDeadline: z.coerce.date(),
 });
 
 export type Job = z.infer<typeof JobSchema>;
