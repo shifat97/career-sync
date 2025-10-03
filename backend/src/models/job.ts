@@ -10,7 +10,11 @@ const JobSchema = new Schema<Job>(
     applicationDeadline: { type: Date, required: true },
     department: { type: String, required: true },
     location: { type: String, required: true },
-    company: { type: String, ref: 'Company', required: true },
+    company: {
+      type: Schema.Types.ObjectId,
+      ref: 'Company',
+      required: true,
+    },
     employmentType: { type: String, enum: EmploymentType, required: true },
     workPlaceType: { type: String, enum: WorkPlaceType, required: true },
     compensation: { type: String, required: true },
