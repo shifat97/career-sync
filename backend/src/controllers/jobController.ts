@@ -17,3 +17,15 @@ export const getAllJobs = async (req: Request, res: Response) => {
     status: 'success',
   });
 };
+
+export const getJob = async (req: Request, res: Response) => {
+  const { companyId, jobId } = req.params;
+  const job = await jobServices.getJob(companyId, jobId);
+
+  if (job?.deletedAt != null) {
+    res.status(404).json({ message: 'No job found', status: 'failed' });
+    return;
+  }
+
+  res.status(200).json({ data: job, status: 'success' });
+};

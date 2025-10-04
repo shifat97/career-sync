@@ -11,5 +11,6 @@ router.post(
   jobController.createJob,
 );
 router.get('/:companyId/jobs', jobController.getAllJobs);
+router.get('/:companyId/jobs/:jobId', jobController.getJob);
 
 export default router;
