@@ -31,3 +31,12 @@ export const getAllJobs = async (
     limit,
   };
 };
+
+export const getJob = async (companyId: string, jobId: string) => {
+  const job = await JobModel.findOne({
+    company: companyId,
+    _id: jobId,
+  });
+
+  return job;
+};
