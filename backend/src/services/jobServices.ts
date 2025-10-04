@@ -7,6 +7,6 @@ export const createJob = async (jobPayload: CreateJob) => {
 };
 
 export const getAllJobs = async (id: string) => {
-  const allJobs = await JobModel.find({ company: id });
+  const allJobs = await JobModel.find({ company: id }).populate('company');
   return allJobs;
 };
