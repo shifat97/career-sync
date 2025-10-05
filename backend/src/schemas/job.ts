@@ -43,5 +43,29 @@ export const CreateJobSchema = JobSchema.pick({
   applicationDeadline: z.coerce.date(),
 });
 
+export const UpdateJobSchema = z
+  .object({
+    title: z.string().optional(),
+    jobDescription: z.string().optional(),
+    openingDate: z.date().optional(),
+    applicationDeadline: z.date().optional(),
+    department: z.string().optional(),
+    location: z.string().optional(),
+    employmentType: z.enum(EmploymentType).optional(),
+    workPlaceType: z.enum(WorkPlaceType).optional(),
+    compensation: z.string().optional(),
+    skills: z
+      .array(z.string())
+      .min(1, 'At least one skill is required')
+      .optional(),
+    vacancy: z.number().int().positive().optional(),
+    tags: z.array(z.string()).min(1, 'At least one tag is required').optional(),
+    status: z.enum(JobStatus).optional(),
+  })
+  .extend({
+    openingDate: z.coerce.date(),
+    applicationDeadline: z.coerce.date(),
+  });
+
 export type Job = z.infer<typeof JobSchema>;
 export type CreateJob = z.infer<typeof CreateJobSchema>;
