@@ -33,6 +33,16 @@ export const getJob = async (req: Request, res: Response) => {
 export const updateJob = async (req: Request, res: Response) => {
   const { jobId } = req.params;
   const updatedJobData = req.body;
+
+  // Do not allow users to update company reference
+  // OR company ID
+  if (updatedJobData?.company) {
+    res
+      .status(403)
+      .json({ message: 'Cannot update company reference', status: 'fail' });
+    return;
+  }
+
   const newJob = await jobServices.updateJob(jobId, updatedJobData);
 
   if (!newJob) {
