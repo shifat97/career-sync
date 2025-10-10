@@ -43,14 +43,14 @@ export const updateJob = async (req: Request, res: Response) => {
     return;
   }
 
-  const newJob = await jobServices.updateJob(jobId, updatedJobData);
+  const updatedJob = await jobServices.updateJob(jobId, updatedJobData);
 
-  if (!newJob) {
+  if (!updatedJob) {
     res
       .status(404)
       .json({ message: 'No company found with this id', status: 'failed' });
     return;
   }
 
-  res.status(201).json({ data: newJob, status: 'success' });
+  res.status(201).json({ data: updatedJob, status: 'success' });
 };
