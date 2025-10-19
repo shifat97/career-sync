@@ -26,5 +26,6 @@ router.patch(
   validatePayload(UpdateJobStatusSchema),
   jobController.updatePublishStatus,
 );
+router.delete('/:companyId/jobs/:jobId', jobController.deleteJob);
 
 export default router;

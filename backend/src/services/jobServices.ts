@@ -69,3 +69,19 @@ export const updateJobStatus = async (
 
   return updateJobStatus;
 };
+
+export const deleteJob = async (companyId: string, jobId: string) => {
+  const findJob = await JobModel.findOne({ company: companyId, _id: jobId });
+
+  if (!findJob || findJob?.deletedAt) {
+    return false;
+  }
+
+  await JobModel.findOneAndUpdate(
+    { company: companyId, _id: jobId },
+    { deletedAt: new Date() },
+    { new: true },
+  );
+
+  return true;
+};

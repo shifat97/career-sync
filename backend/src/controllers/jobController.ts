@@ -77,3 +77,20 @@ export const updatePublishStatus = async (req: Request, res: Response) => {
     status: 'success',
   });
 };
+
+export const deleteJob = async (req: Request, res: Response) => {
+  const { companyId, jobId } = req.params;
+  const deleteJob = await jobServices.deleteJob(companyId, jobId);
+
+  if (!deleteJob) {
+    res
+      .status(404)
+      .json({ message: 'No job found with this id', status: 'fail' });
+    return;
+  }
+
+  res.status(200).json({
+    message: 'Job deletion successful',
+    status: 'success',
+  });
+};
