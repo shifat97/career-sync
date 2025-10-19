@@ -64,5 +64,12 @@ export const UpdateJobSchema = JobSchema.pick({
     applicationDeadline: z.coerce.date().optional(),
   });
 
+export const UpdateJobStatusSchema = JobSchema.pick({
+  status: true,
+}).extend({
+  openingDate: z.coerce.date().optional(),
+  applicationDeadline: z.coerce.date().optional(),
+});
+
 export type Job = z.infer<typeof JobSchema>;
 export type CreateJob = z.infer<typeof CreateJobSchema>;

@@ -48,3 +48,24 @@ export const updateJob = async (id: string, newJobData: CreateJob) => {
 
   return updateJobData;
 };
+
+export const updateJobStatus = async (
+  jobId: string,
+  companyId: string,
+  status: string,
+) => {
+  const findJobById = await JobModel.findOne({
+    company: companyId,
+    _id: jobId,
+  });
+
+  if (!findJobById) return false;
+
+  const updateJobStatus = await JobModel.findOneAndUpdate(
+    { _id: jobId, company: companyId },
+    { status },
+    { new: true },
+  );
+
+  return updateJobStatus;
+};

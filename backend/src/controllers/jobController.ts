@@ -54,3 +54,26 @@ export const updateJob = async (req: Request, res: Response) => {
 
   res.status(201).json({ data: updatedJob, status: 'success' });
 };
+
+export const updatePublishStatus = async (req: Request, res: Response) => {
+  const { jobId, companyId } = req.params;
+  const { status } = req.body;
+  const updatedJobStatus = await jobServices.updateJobStatus(
+    jobId,
+    companyId,
+    status,
+  );
+
+  if (!updatedJobStatus) {
+    res.status(404).json({
+      message: 'No job found with this id',
+      status: 'failed',
+    });
+  }
+
+  res.status(200).json({
+    data: updatedJobStatus,
+    message: 'Job status update successfully',
+    status: 'success',
+  });
+};

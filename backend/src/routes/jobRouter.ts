@@ -1,7 +1,11 @@
 import { Router } from 'express';
 import { jobController } from '@/controllers';
 import { validatePayload } from '@/middlewares/validatePayload';
-import { CreateJobSchema, UpdateJobSchema } from '@/schemas';
+import {
+  CreateJobSchema,
+  UpdateJobSchema,
+  UpdateJobStatusSchema,
+} from '@/schemas';
 
 const router = Router();
 
@@ -16,6 +20,11 @@ router.put(
   '/:companyId/jobs/:jobId',
   validatePayload(UpdateJobSchema),
   jobController.updateJob,
+);
+router.patch(
+  '/:companyId/jobs/:jobId/change-status',
+  validatePayload(UpdateJobStatusSchema),
+  jobController.updatePublishStatus,
 );
 
 export default router;
