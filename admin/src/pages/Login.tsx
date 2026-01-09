@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Mail, Lock, Chrome, Mountain } from 'lucide-react';
-import cuteBunny from '@/assets/images/cute_bunny.jpg';
+import cuteBunny from '@/assets/images/cuteBunnyGif.gif';
 
 export default function Login() {
   return (
@@ -11,10 +11,11 @@ export default function Login() {
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
             Welcome Back!
           </h1>
-          <p className="mt-4 text-gray-600 dark:text-gray-300">
-            Welcome back! Let’s get you signed in.
+          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-[400px] text-center">
+            Access your account safely and continue managing your work with
+            confidence and ease.
           </p>
-          <div className="mt-8 h-64 w-64 mx-auto">
+          <div className="mt-8 h-96 w-96 mx-auto">
             <img
               src={cuteBunny}
               alt="Cute Bunny"
