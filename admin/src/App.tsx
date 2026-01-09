@@ -6,7 +6,7 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <>
-      <div className="min-h-screen bg-gray-100 font-sans antialiased flex flex-col">
+      <div className="min-h-screen bg-gray-100 font-sans antialiased flex flex-col justify-between">
         {/* Header */}
         <header className="bg-white shadow-sm p-4 border-b border-gray-200">
           <nav className="container mx-auto flex justify-between items-center">
